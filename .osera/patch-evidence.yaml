@@ -1,7 +1,7 @@
 # Licensed under the Apache License, Version 2.0: https://www.apache.org/licenses/LICENSE-2.0
 schema: osera-patch-evidence/0.1.0
 producer: moderne
-release: 1.27.1-osera-00004
+release: 1.27.1-osera-00005
 baseline: v1.27+patch.baseline
 fixes:
   - cve: CVE-2022-1471
@@ -35,12 +35,20 @@ fixes:
     basis: adapted
     artifacts:
       - org.yaml:snakeyaml
-    note: New in this release; adapted onto 1.27; fixed at 1.27.1-backpatch-00004 (backpatch-snakeyaml@15d9658).
+    note: Carried from 1.27.1-backpatch-00004.
+  - cve: CVE-2022-38752
+    upstream_fix_url: https://github.com/snakeyaml/snakeyaml/commit/5056a448f09c46250346c338e821386caa751182
+    advisory_url: https://nvd.nist.gov/vuln/detail/CVE-2022-38752
+    patch_commit_url: https://github.com/moderne-backpatch-alliance/backpatch-snakeyaml/commit/a2bdea6
+    basis: adapted
+    artifacts:
+      - org.yaml:snakeyaml
+    note: New in this release; adapted onto 1.27; fixed at 1.27.1-backpatch-00005 (backpatch-snakeyaml@a2bdea6).
 tests:
-  commit: c0b7086a2060a2039b8c9b606c933410bb441215
+  commit: 29e7d5930084b39a7c814709c0c6c6042b873f40
   command: JAVA_HOME=<jdk-11> /bin/bash <alliance>/work/wave2/items/scripts/maven-forked-javac.sh suite <m2>  <alliance>/work/wave2/items/scripts/zulu7u79-javac.sh -Dorg.yaml.snakeyaml.allowGlobalTags=true
   runtime: Azul Zulu (Java 11.0.20), Apache Maven 3.9.16, javac of Zulu 7u79, macOS aarch64
-  report: snakeyaml-1.27.1-osera-00004-tests.zip
-  report_sha256: 41dc04e4bbcab8add1bab724d4ca6d3cac331d22e438bab99422efa7a5376d90
+  report: snakeyaml-1.27.1-osera-00005-tests.zip
+  report_sha256: 7c8bfa74443622db310a9435352b07f6fca52b105c18b9dff74aef651a38a01a
   result: pass
-  note: the full suite at the tested commit, 991 tests run, 0 failed, 1 skipped; the regression tests for CVE-2022-38751 are Fuzzy47039Test, ResolverTupleTest
+  note: the full suite at the tested commit, 994 tests run, 0 failed, 1 skipped; the regression tests for CVE-2022-38752 are Fuzzy47081Test, HumanGenericsTest, HumanTest, RecursiveSetTest, RecursiveSortedSetTest
